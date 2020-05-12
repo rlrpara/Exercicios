@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Questor.Questao2.Library.Contexto;
-using Questor.Questao2.Library.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Questor.Questao2.Controllers
 {
@@ -24,23 +22,20 @@ namespace Questor.Questao2.Controllers
             var ped = await _questorContext.Pedidos.ToListAsync();
             var pedItem = await _questorContext.PedidoItens.ToListAsync();
 
-            var result = prod
-                .Join(pedItem,
-                    produto => produto.ProdutoId,
-                    pedidoitem => pedidoitem.ProdutoId,
-                    (produto, pedidoitem) => new { prod = produto, pedItem = pedidoitem })
-                .Join(ped,
-                    pedidoitem => pedidoitem.pedItem.ProdutoId,
-                    pedido => pedido.PedidoId,
-                    (pedidoitem, pedido) => new { pedItem = pedidoitem, ped = pedido })
-                .Join(cli,
-                    pedido => pedido.ped.ClienteId,
-                    cliente => cliente.ClienteId,
-                    (pedido, cliente) => new { ped = pedido, cli = cliente })
-                .Select(x => new
-                {
-                    x.
-                });
+            var query = from pedidoitem in pedItem
+                        join pedido in ped on pedidoitem.PedidoItensId equals pedido.PedidoId
+                        join cliente in cli on pedido.ClienteId equals cliente.ClienteId
+                        join produto in prod on pedidoitem.ProdutoId equals produto.ProdutoId
+                        select new
+                        {
+                            pedido.PedidoId,
+                            produto.ProdutoId,
+                            ProdutoNome = produto.Nome,
+                            cliente.ClienteId,
+                            ClienteNome = cliente.Nome,
+                        };
+
+            ViewBag.ListaProduto = query;
 
             return View();
         }
