@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Questor.Questao2.Library.Contexto;
+using Questor.Questao2.Library.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,13 +30,24 @@ namespace Questor.Questao2.Controllers
                         select new
                         {
                             pedido.PedidoId,
-                            produto.ProdutoId,
                             ProdutoNome = produto.Nome,
                             cliente.ClienteId,
                             ClienteNome = cliente.Nome,
                         };
+            var listaProdCli = new List<ProdutoCliente>();
+            foreach (var item in query)
+            {
+                var produtoCliente = new ProdutoCliente
+                {
+                    ProdutoClienteId = item.PedidoId,
+                    ProdutoNome = item.ProdutoNome,
+                    ClienteId = item.ClienteId,
+                    ClienteNome = item.ClienteNome
+                };
+                listaProdCli.Add(produtoCliente);
+            }
 
-            ViewBag.ListaProduto = query;
+            ViewBag.ListaProduto = listaProdCli;
 
             return View();
         }

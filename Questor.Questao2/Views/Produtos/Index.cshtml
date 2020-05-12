@@ -1,6 +1,7 @@
-﻿
+﻿@model List<Questor.Questao2.Library.Domain.Entities.ProdutoCliente>
 @{
     ViewData["Title"] = "Index";
+    var a = (List<Questor.Questao2.Library.Domain.Entities.ProdutoCliente>)ViewBag.ListaProduto;
 }
 
 <h2>Produtos</h2>
@@ -19,13 +20,13 @@
         <tbody>
             @if (ViewBag.ListaProduto != null)
             {
-                @foreach (var item in ViewBag.ListaProduto)
+                @foreach (var item in a)
                 {
                     <tr>
-                        <th scope="row">@item</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>mdo</td>
+                        <th scope="row">@item.ProdutoClienteId</th>
+                        <td>@item.ProdutoNome</td>
+                        <td>@item.ProdutoClienteId</td>
+                        <td>@item.ClienteNome</td>
                     </tr>
                 }
             }
