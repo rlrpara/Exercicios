@@ -33,6 +33,7 @@ namespace Questor.Questao2.Library.Contexto
                 new Categoria(){CategoriaId = 2, Nome = "PAPELARIA", Descricao = "MATERIAIS PARA PAPELARIA"}
             );
             #endregion
+
             #region CLIENTES
             modelBuilder.Entity<Cliente>().HasData(
                 new Cliente() { ClienteId = 1, Nome = "DOMINGOS ASSUNÇÃO" },
@@ -70,7 +71,7 @@ namespace Questor.Questao2.Library.Contexto
                 new Pedido() { PedidoId = 2, DataVenda = Convert.ToDateTime("2020-03-10"), QtdTotal = 30, ValorTotal = Convert.ToDecimal(88.00), ClienteId = 2 },
                 new Pedido() { PedidoId = 3, DataVenda = Convert.ToDateTime("2020-03-10"), QtdTotal = 15, ValorTotal = Convert.ToDecimal(60.00), ClienteId = 3 },
                 new Pedido() { PedidoId = 4, DataVenda = Convert.ToDateTime("2020-03-11"), QtdTotal = 15, ValorTotal = Convert.ToDecimal(60.00), ClienteId = 4 },
-                new Pedido() { PedidoId = 5, DataVenda = Convert.ToDateTime("2020-03-12"), QtdTotal = 15, ValorTotal = Convert.ToDecimal(60.00), ClienteId = 4 }
+                new Pedido() { PedidoId = 5, DataVenda = Convert.ToDateTime("2020-03-12"), QtdTotal = 15, ValorTotal = Convert.ToDecimal(60.00), ClienteId = 2 }
             );
             #endregion
 
@@ -83,7 +84,8 @@ namespace Questor.Questao2.Library.Contexto
                 new PedidoItens() { PedidoItensId = 5, PedidoId = 2, ProdutoId = 5, Qtd = 8, Valor = Convert.ToDecimal(3.00), ValorTotal = Convert.ToDecimal(24.00) },
                 new PedidoItens() { PedidoItensId = 6, PedidoId = 3, ProdutoId = 4, Qtd = 15, Valor = Convert.ToDecimal(4.00), ValorTotal = Convert.ToDecimal(60.00) },
                 new PedidoItens() { PedidoItensId = 7, PedidoId = 4, ProdutoId = 4, Qtd = 15, Valor = Convert.ToDecimal(4.00), ValorTotal = Convert.ToDecimal(60.00) },
-                new PedidoItens() { PedidoItensId = 8, PedidoId = 4, ProdutoId = 4, Qtd = 15, Valor = Convert.ToDecimal(4.00), ValorTotal = Convert.ToDecimal(60.00) }
+                new PedidoItens() { PedidoItensId = 8, PedidoId = 4, ProdutoId = 4, Qtd = 15, Valor = Convert.ToDecimal(4.00), ValorTotal = Convert.ToDecimal(60.00) },
+                new PedidoItens() { PedidoItensId = 9, PedidoId = 5, ProdutoId = 4, Qtd = 15, Valor = Convert.ToDecimal(4.00), ValorTotal = Convert.ToDecimal(60.00) }
             );
             #endregion
 
