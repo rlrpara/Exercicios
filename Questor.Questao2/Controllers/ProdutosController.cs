@@ -34,6 +34,7 @@ namespace Questor.Questao2.Controllers
                         };
             var query2 = from a in query
                          join produto in prod on a.ProdutoId equals produto.ProdutoId
+                         orderby a.QuantidadeCliente descending
                          select new ProdutoView
                          {
                              ProdutoId = a.ProdutoId,
